@@ -12,7 +12,7 @@ const getLoginPage = (req, res) => {
 
 const postRegister = async (req, res) => {
   try {
-    const { email, password, _name } = req.body;
+    const { email, password, username } = req.body;
     console.log("AUTH CONTROLLER REGISTRATION BODY: ", req.body);
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -21,12 +21,13 @@ const postRegister = async (req, res) => {
       data: {
         email,
         password: hashedPassword,
+        userName: username,
       },
     });
 
     res
       .status(201)
-      .json({ message: `${userToRegister.email} created successfully` });
+      .json({ message: `${userToRegister.userName} created successfully` });
   } catch (error) {
     res
       .status(400)
@@ -36,7 +37,7 @@ const postRegister = async (req, res) => {
 
 const postLogin = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
     console.log("AUTH CONTROLLER LOGIN BODY: ", req.body);
 
     const userToLogin = await prismaClientInstance.user.findUnique({
@@ -48,9 +49,13 @@ const postLogin = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: userToLogin.id, email: userToLogin.email },
+      {
+        id: userToLogin.id,
+        email: userToLogin.email,
+        username: userToLogin.userName,
+      },
       process.env.JWT_SECRET,
-      { expiresIn: "60s" }
+      { expiresIn: "70s" }
     );
 
     res.json({
@@ -58,7 +63,7 @@ const postLogin = async (req, res) => {
       userToLogin: {
         id: userToLogin.id,
         email: userToLogin.email,
-        name: userToLogin.name,
+        username: userToLogin.userName,
       },
     });
   } catch (error) {

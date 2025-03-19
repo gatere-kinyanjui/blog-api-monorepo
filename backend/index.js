@@ -31,7 +31,7 @@ blogApp.use("/", homeRouter);
 blogApp.use("/auth", authRouter);
 blogApp.use("/dashboard", dashboardRouter);
 
-blogApp.get("/protected", authMiddleware, (req, res) => {
+blogApp.get("/dashboard", authMiddleware, (req, res) => {
   res.json({
     message: "Protected route accessed successfully!",
     user: req.user,
