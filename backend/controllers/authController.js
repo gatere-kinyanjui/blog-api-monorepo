@@ -4,8 +4,6 @@ const {
   prismaClientInstance,
 } = require("../orm-services/prismaClientInstance");
 
-const opts = {};
-
 const getLoginPage = async (req, res) => {
   res.send("Login or Sign up here");
 };
@@ -47,7 +45,7 @@ const postRegister = async (req, res) => {
 
 const postLogin = async (req, res) => {
   try {
-    const { email, password, username } = req.body;
+    const { email, password } = req.body;
     console.log("AUTH CONTROLLER LOGIN BODY: ", req.body);
 
     const userToLogin = await prismaClientInstance.user.findUnique({

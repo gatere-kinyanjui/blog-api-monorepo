@@ -12,6 +12,7 @@ const passport = require("../backend/utils/passport-auth");
 
 const cors = require("cors");
 const authMiddleware = require("./middleware/authMiddleware");
+const { getBlogPostsPage } = require("./controllers/blogPostController");
 
 const blogApp = express();
 const port = process.env.PORT;
@@ -30,6 +31,7 @@ blogApp.use(express.static(path.join(__dirname, "public")));
 blogApp.use("/", homeRouter);
 blogApp.use("/auth", authRouter);
 blogApp.use("/dashboard", authMiddleware, dashboardRouter);
+blogApp.use("/posts", authMiddleware, getBlogPostsPage);
 
 // blogApp.get(
 //   "/dashboard",
