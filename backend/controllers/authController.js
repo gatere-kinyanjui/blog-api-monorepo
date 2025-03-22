@@ -6,31 +6,41 @@ const {
 
 const opts = {};
 
-const getLoginPage = (req, res) => {
+const getLoginPage = async (req, res) => {
   res.send("Login or Sign up here");
 };
 
 const postRegister = async (req, res) => {
   try {
     const { email, password, username } = req.body;
-    console.log("AUTH CONTROLLER REGISTRATION BODY: ", req.body);
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const userToRegister = await prismaClientInstance.user.create({
-      data: {
-        email,
-        password: hashedPassword,
-        userName: username,
-      },
+    const userExists = await prismaClientInstance.user.findUnique({
+      where: { email: email },
     });
 
-    res
-      .status(201)
-      .json({ message: `${userToRegister.userName} created successfully` });
+    if (userExists) {
+      console.log("user exists");
+      res.status(400).json({ message: "user already exists." });
+    } else {
+      console.log("AUTH CONTROLLER REGISTRATION BODY: ", req.body);
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const userToRegister = await prismaClientInstance.user.create({
+        data: {
+          email,
+          password: hashedPassword,
+          userName: username,
+        },
+      });
+
+      res
+        .status(201)
+        .json({ message: `${userToRegister.userName} created successfully` });
+    }
   } catch (error) {
     res
-      .status(400)
+      .status(500)
       .json({ message: "Error registering new user", error: error.message });
   }
 };
@@ -55,7 +65,7 @@ const postLogin = async (req, res) => {
         username: userToLogin.userName,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "70s" }
+      { expiresIn: "24h" }
     );
 
     res.json({
@@ -68,7 +78,7 @@ const postLogin = async (req, res) => {
     });
   } catch (error) {
     res
-      .status(400)
+      .status(500)
       .json({ message: "Error logging in user", error: error.message });
   }
 };

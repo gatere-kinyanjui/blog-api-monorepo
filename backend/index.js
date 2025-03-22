@@ -29,14 +29,18 @@ blogApp.use(express.static(path.join(__dirname, "public")));
 // routes middleware
 blogApp.use("/", homeRouter);
 blogApp.use("/auth", authRouter);
-blogApp.use("/dashboard", dashboardRouter);
+blogApp.use("/dashboard", authMiddleware, dashboardRouter);
 
-blogApp.get("/dashboard", authMiddleware, (req, res) => {
-  res.json({
-    message: "Protected route accessed successfully!",
-    user: req.user,
-  });
-});
+// blogApp.get(
+//   "/dashboard",
+//   authMiddleware,
+//   dashboardRouter
+//   // (req, res) => {
+//   // res.json({
+//   //   message: "Protected route accessed successfully!",
+//   //   user: req.user,
+//   // })}
+// );
 
 blogApp.listen(port, () => {
   console.log(`Blog API app listening on ${port}. Success!`);
