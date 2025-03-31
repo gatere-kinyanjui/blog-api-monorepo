@@ -1,6 +1,8 @@
 const express = require("express");
-const { getBlogPostsPage } = require("../controllers/blogPostController");
+const authMiddleware = require("../middleware/authMiddleware");
+const { getBlogPostsPage } =
+  require("../controllers/blogPostController").default;
 
 const blogPostsRouter = express.Router();
 
-blogPostsRouter.get("/", getBlogPostsPage);
+blogPostsRouter.get("/", authMiddleware, getBlogPostsPage);

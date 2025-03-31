@@ -9,6 +9,9 @@ const dashboardRouter = express.Router();
 dashboardRouter.get("/:id", authMiddleware, async (req, res) => {
   try {
     const userId = parseInt(req.params.id);
+    console.log("Requested ID from URL:", userId);
+    console.log("Authenticated User ID from JWT:", req.user.id);
+
     const user = await prismaClientInstance.user.findUnique({
       where: {
         id: userId,
@@ -23,15 +26,15 @@ dashboardRouter.get("/:id", authMiddleware, async (req, res) => {
       },
     });
 
+    console.log("Fetched User from Database:", user);
+
     if (!user) {
       res.status(404).json({ message: "User not found. Please login." });
+    } else {
+      res.send(
+        `Welcome, ${user.userName}. You have ${user.posts.length} posts drafted!`
+      );
     }
-
-    // res.json(user);
-
-    res.send(
-      `Welcome, ${user.userName}. You have ${user.posts.length} posts drafted!`
-    );
   } catch (error) {
     res.status(500).json({
       message: "Error getting user dashboard: ",

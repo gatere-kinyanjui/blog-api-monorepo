@@ -18,7 +18,7 @@ passport.use(JwtStrategy);
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET,
-  // algorithms: ["RS256"],
+  algorithms: ["HS256"],
 };
 
 passport.use(

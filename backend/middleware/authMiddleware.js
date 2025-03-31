@@ -2,6 +2,10 @@ const passport = require("../utils/passport-auth");
 
 const authMiddleware = (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user, info) => {
+    console.log("ERROR:", err);
+    console.log("USER:", user);
+    console.log("INFO:", info);
+
     if (err) {
       return next(err);
     }

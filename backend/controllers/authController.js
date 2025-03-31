@@ -53,7 +53,7 @@ const postLogin = async (req, res) => {
     });
 
     if (!userToLogin || !bcrypt.compare(password, userToLogin.password)) {
-      return res.status(4001).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const token = jwt.sign(
@@ -63,7 +63,7 @@ const postLogin = async (req, res) => {
         username: userToLogin.userName,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "5m" }
     );
 
     res.json({
@@ -80,9 +80,5 @@ const postLogin = async (req, res) => {
       .json({ message: "Error logging in user", error: error.message });
   }
 };
-
-// const getProtectedRoute = (req, res) => {
-//   return req.status(200).send("A protected route!");
-// };
 
 module.exports = { getLoginPage, postRegister, postLogin };

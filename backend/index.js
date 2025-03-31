@@ -31,7 +31,11 @@ blogApp.use(express.static(path.join(__dirname, "public")));
 blogApp.use("/", homeRouter);
 blogApp.use("/auth", authRouter);
 blogApp.use("/dashboard", authMiddleware, dashboardRouter);
-blogApp.use("/posts", authMiddleware, getBlogPostsPage);
+blogApp.use("/posts", getBlogPostsPage);
+
+blogApp.listen(port, () => {
+  console.log(`Blog API app listening on ${port}. Success!`);
+});
 
 // blogApp.get(
 //   "/dashboard",
@@ -43,7 +47,3 @@ blogApp.use("/posts", authMiddleware, getBlogPostsPage);
 //   //   user: req.user,
 //   // })}
 // );
-
-blogApp.listen(port, () => {
-  console.log(`Blog API app listening on ${port}. Success!`);
-});
