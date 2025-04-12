@@ -1,61 +1,38 @@
-# frontend
+# sv
 
-This template should help get you started developing with Vue 3 in Vite.
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Recommended IDE Setup
+## Creating a project
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+If you're seeing this, you've probably already done this step. Congrats!
 
-## Type Support for `.vue` Imports in TS
+```bash
+# create a new project in the current directory
+npx sv create
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
+# create a new project in my-app
+npx sv create my-app
 ```
 
-### Compile and Hot-Reload for Development
+## Developing
 
-```sh
-pnpm dev
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
 ```
 
-### Type-Check, Compile and Minify for Production
+## Building
 
-```sh
-pnpm build
+To create a production version of your app:
+
+```bash
+npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+You can preview the production build with `npm run preview`.
 
-```sh
-pnpm test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-pnpm test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-pnpm build
-pnpm test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

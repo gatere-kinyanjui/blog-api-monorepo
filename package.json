@@ -9,7 +9,9 @@
     "dev": "pnpm --parallel -r dev",
     "build": "pnpm -r build"
   },
-  "keywords": [],
+  "keywords": [
+    
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -18,5 +20,10 @@
     "eslint": "^9.17.0",
     "prettier": "^3.4.2",
     "typescript": "~5.6.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
