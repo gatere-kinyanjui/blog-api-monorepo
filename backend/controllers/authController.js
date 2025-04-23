@@ -63,7 +63,7 @@ const postLogin = async (req, res) => {
         username: userToLogin.userName,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "5m" }
+      { expiresIn: "45s" }
     );
 
     res.json({

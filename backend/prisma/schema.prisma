@@ -13,31 +13,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  userName  String?
-  posts     Post[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+// model user {
+//   id         Int      @id @default(autoincrement())
+//   email      String   @unique
+//   password   String
+//   userName   String?
+//   posts      post[]
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt
+// }
 
-model Post {
-  id        Int       @id @default(autoincrement())
-  title     String
-  content   String
-  published Boolean   @default(false)
-  author    User      @relation(fields: [authorId], references: [id])
-  authorId  Int
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  Comment   Comment[]
-}
+// model post {
+//   id         Int       @id @default(autoincrement())
+//   title      String
+//   content    String
+//   published  Boolean   @default(false)
+//   author     user      @relation(fields: [author_id], references: [id])
+//   author_id  Int
+//   created_at DateTime  @default(now())
+//   updated_at DateTime  @updatedAt
+//   Comments   comment[]
+// }
 
-model Comment {
-  id      Int    @id @default(autoincrement())
-  content String
-  post    Post   @relation(fields: [postId], references: [id])
-  postId  Int
+// model comment {
+//   id      Int    @id @default(autoincrement())
+//   content String
+//   post    post   @relation(fields: [post_id], references: [id])
+//   post_id Int
+// }
+
+model post {
+  id         Int      @id @default(autoincrement())
+  title      String
+  content    String
+  published  Boolean  @default(false)
+  author_id  Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

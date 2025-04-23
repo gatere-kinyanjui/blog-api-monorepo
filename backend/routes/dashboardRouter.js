@@ -6,7 +6,7 @@ const {
 
 const dashboardRouter = express.Router();
 
-dashboardRouter.get("/:id", authMiddleware, async (req, res) => {
+dashboardRouter.get("/:id", async (req, res) => {
   try {
     const userId = parseInt(req.params.id);
     console.log("Requested ID from URL:", userId);
@@ -26,7 +26,7 @@ dashboardRouter.get("/:id", authMiddleware, async (req, res) => {
       },
     });
 
-    console.log("Fetched User from Database:", user);
+    console.log("Fetched User from Database: ", user);
 
     if (!user) {
       res.status(404).json({ message: "User not found. Please login." });

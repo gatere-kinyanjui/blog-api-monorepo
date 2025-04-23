@@ -8,8 +8,6 @@ const dashboardRouter = require("./routes/dashboardRouter");
 
 const passport = require("../backend/utils/passport-auth");
 
-// const passport = require("passport");
-
 const cors = require("cors");
 const authMiddleware = require("./middleware/authMiddleware");
 const { getBlogPostsPage } = require("./controllers/blogPostController");
@@ -32,6 +30,10 @@ blogApp.use("/", homeRouter);
 blogApp.use("/auth", authRouter);
 blogApp.use("/dashboard", authMiddleware, dashboardRouter);
 blogApp.use("/posts", getBlogPostsPage);
+
+// blogApp.get("/", (req, res) => {
+//   res.sendFile(path.resolve(__dirname))
+// });
 
 blogApp.listen(port, () => {
   console.log(`Blog API app listening on ${port}. Success!`);
