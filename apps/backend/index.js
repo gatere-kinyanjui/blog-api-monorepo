@@ -12,34 +12,34 @@ const cors = require("cors");
 const authMiddleware = require("./middleware/authMiddleware");
 const { getBlogPostsPage } = require("./controllers/blogPostController");
 
-const blogApp = express();
-const port = process.env.PORT;
+const expressServerApp = express();
+const port = process.env.PORT || 8000;
 
 // body parsers
-blogApp.use(express.urlencoded({ extended: true }));
-blogApp.use(express.json());
+expressServerApp.use(express.urlencoded({ extended: true }));
+expressServerApp.use(express.json());
 
-blogApp.use(passport.initialize());
+expressServerApp.use(passport.initialize());
 
-// blogApp.use(cors());
+expressServerApp.use(cors({ origin: "http://localhost:3000" }));
 
-blogApp.use(express.static(path.join(__dirname, "public")));
+expressServerApp.use(express.static(path.join(__dirname, "public")));
 
 // routes middleware
-blogApp.use("/", homeRouter);
-blogApp.use("/auth", authRouter);
-blogApp.use("/dashboard", authMiddleware, dashboardRouter);
-blogApp.use("/posts", getBlogPostsPage);
+expressServerApp.use("/", homeRouter);
+expressServerApp.use("/auth", authRouter);
+expressServerApp.use("/dashboard", authMiddleware, dashboardRouter);
+expressServerApp.use("/posts", getBlogPostsPage);
 
-// blogApp.get("/", (req, res) => {
+// expressServerApp.get("/", (req, res) => {
 //   res.sendFile(path.resolve(__dirname))
 // });
 
-blogApp.listen(port, () => {
+expressServerApp.listen(port, () => {
   console.log(`Blog API app listening on ${port}. Success!`);
 });
 
-// blogApp.get(
+// expressServerApp.get(
 //   "/dashboard",
 //   authMiddleware,
 //   dashboardRouter

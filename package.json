@@ -22,7 +22,16 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild"
+      "@prisma/client",
+      "@prisma/engines",
+      "bcrypt",
+      "esbuild",
+      "prisma",
+      "sharp",
+      "unrs-resolver"
     ]
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
   }
 }
