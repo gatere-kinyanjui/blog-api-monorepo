@@ -8,12 +8,15 @@ const dashboardRouter = require("./routes/dashboardRouter");
 
 const passport = require("../backend/utils/passport-auth");
 
-const cors = require("cors");
 const authMiddleware = require("./middleware/authMiddleware");
 const { getBlogPostsPage } = require("./controllers/blogPostController");
 
 const expressServerApp = express();
 const port = process.env.PORT || 8000;
+
+const cors = require("cors");
+
+const corsOption = { origin: ["http://localhost:3000"] };
 
 // body parsers
 expressServerApp.use(express.urlencoded({ extended: true }));
@@ -21,7 +24,7 @@ expressServerApp.use(express.json());
 
 expressServerApp.use(passport.initialize());
 
-expressServerApp.use(cors({ origin: "http://localhost:3000" }));
+expressServerApp.use(cors(corsOption));
 
 expressServerApp.use(express.static(path.join(__dirname, "public")));
 

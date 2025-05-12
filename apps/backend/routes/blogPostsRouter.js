@@ -5,4 +5,4 @@ const { getBlogPostsPage } =
 
 const blogPostsRouter = express.Router();
 
-blogPostsRouter.get("/", authMiddleware, getBlogPostsPage);
+blogPostsRouter.get("/", getBlogPostsPage);
