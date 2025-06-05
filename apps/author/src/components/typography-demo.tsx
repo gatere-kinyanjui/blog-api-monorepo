@@ -65,6 +65,7 @@ export function TypographyDemo() {
         tell jokes and puns again, and soon the entire kingdom was in on the
         joke.
       </p>
+
       <div className="my-6 w-full overflow-y-auto">
         <table className="w-full">
           <thead>
