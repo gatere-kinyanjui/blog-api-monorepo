@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "./App.css";
-import Home from "./pages/home/home";
+import CreatePost from "./pages/create-post/createPost";
 
 function App() {
   return (
     <>
-      <Home />
+      <CreatePost />
     </>
   );
 }
