@@ -5,18 +5,18 @@ require("dotenv").config();
 const authRouter = require("./routes/authRouter");
 const homeRouter = require("./routes/homeRouter");
 const dashboardRouter = require("./routes/dashboardRouter");
+const blogPostsRouter = require("./routes/blogPostsRouter");
 
 const passport = require("../backend/utils/passport-auth");
 
 const authMiddleware = require("./middleware/authMiddleware");
-const { getBlogPostsPage } = require("./controllers/blogPostController");
 
 const expressServerApp = express();
 const port = process.env.PORT || 8000;
 
 const cors = require("cors");
 
-const corsOption = { origin: ["http://localhost:3000"] };
+const corsOption = { origin: ["http://localhost:5173"] }; // author's app vite local port
 
 // body parsers
 expressServerApp.use(express.urlencoded({ extended: true }));
@@ -32,7 +32,7 @@ expressServerApp.use(express.static(path.join(__dirname, "public")));
 expressServerApp.use("/", homeRouter);
 expressServerApp.use("/auth", authRouter);
 expressServerApp.use("/dashboard", authMiddleware, dashboardRouter);
-expressServerApp.use("/posts", getBlogPostsPage);
+expressServerApp.use("/posts", blogPostsRouter);
 
 // expressServerApp.get("/", (req, res) => {
 //   res.sendFile(path.resolve(__dirname))

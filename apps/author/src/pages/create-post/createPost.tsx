@@ -8,7 +8,7 @@ export default function CreatePost() {
 
   const changeListener = (content: string) => {
     setPost(content);
-    console.log(content);
+    // console.log(content);
   };
 
   return (

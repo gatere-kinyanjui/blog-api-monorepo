@@ -14,15 +14,38 @@ const getBlogPostsPage = async (req, res, next) => {
 
     console.log(posts);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Get blog posts controller error: ", error });
-  }
-  // res.send("Blog posts appear here!");
+    console.log("Get posts full error:", error);
 
-  next();
+    res.status(500).json({
+      message: "Get blogposts controller error: ",
+      error: error.message,
+      details: error.meta,
+    });
+  }
 };
 
-// const postBlogPostsPage = async (req, res) => {};
+const postBlogPostPage = async (req, res) => {
+  try {
+    const { title, content, published, author_id } = req.body;
+    const postToAdd = await prismaClientInstance.post.create({
+      data: {
+        title,
+        content,
+        published: published || false,
+        author_id,
+      },
+    });
 
-module.exports = { getBlogPostsPage };
+    res.json(postToAdd);
+  } catch (error) {
+    console.log("Post blog full error:", error);
+
+    res.status(500).json({
+      message: "Post blogpost controller error: ",
+      error: error.message,
+      details: error.meta,
+    });
+  }
+};
+
+module.exports = { postBlogPostPage, getBlogPostsPage };

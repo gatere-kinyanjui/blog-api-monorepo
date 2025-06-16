@@ -47,6 +47,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
       pressed: editor.isActive("bold"),
     },
     {
+      // TODO: FIX ITALICS FUNCTIONALITY ON EDITOR
       icon: <Italic className="size-4" />,
       onClick: () => editor.chain().focus().toggleItalic().run(),
       pressed: editor.isActive("italic"),
