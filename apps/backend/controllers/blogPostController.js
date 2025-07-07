@@ -29,21 +29,22 @@ const postBlogPostPage = async (req, res) => {
     const { title, content, published, author_id } = req.body;
     const postToAdd = await prismaClientInstance.post.create({
       data: {
-        title,
-        content,
+        title: title,
+        content: content,
         published: published || false,
-        author_id,
+        author_id: author_id,
       },
     });
 
-    res.json(postToAdd);
+    return res
+      .status(201)
+      .json({ message: "Post added successfully: ", data: postToAdd });
   } catch (error) {
-    console.log("Post blog full error:", error);
+    console.log("Post blog full error: ", error);
 
     res.status(500).json({
-      message: "Post blogpost controller error: ",
+      message: "Post blogpost controller error",
       error: error.message,
-      details: error.meta,
     });
   }
 };
