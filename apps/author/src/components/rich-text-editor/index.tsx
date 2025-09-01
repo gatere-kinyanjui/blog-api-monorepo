@@ -86,8 +86,12 @@ const RichTextEditor = () => {
   const fetchPosts = async () => {
     await fetch("http://localhost:8000/posts/")
       .then((res) => res.json())
-      .then((data) => {
-        console.log("SUCCESS FETCHING POSTS: ", data);
+      .then((data: []) => {
+        if (data.length == 0) {
+          console.log("NO POSTS HAVE BEEN FOUND");
+        } else {
+          console.log("SUCCESS FETCHING POSTS: ", data);
+        }
       })
       .catch((err) => {
         console.log("ERROR FETCHING POSTS: ", err);

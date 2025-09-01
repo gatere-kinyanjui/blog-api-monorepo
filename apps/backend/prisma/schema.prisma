@@ -14,13 +14,13 @@ datasource db {
 }
 
 model user {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
   password   String
-  userName   String?
+  user_name  String?
   posts      post[]
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 }
 
 model post {

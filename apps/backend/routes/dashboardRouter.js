@@ -1,5 +1,5 @@
 const express = require("express");
-const authMiddleware = require("../middleware/authMiddleware");
+
 const {
   prismaClientInstance,
 } = require("../orm-services/prismaClientInstance");
@@ -19,10 +19,10 @@ dashboardRouter.get("/:id", async (req, res) => {
       select: {
         id: true,
         email: true,
-        userName: true,
+        user_name: true,
         posts: true,
-        createdAt: true,
-        updatedAt: true,
+        created_at: true,
+        updated_at: true,
       },
     });
 
@@ -32,12 +32,12 @@ dashboardRouter.get("/:id", async (req, res) => {
       res.status(404).json({ message: "User not found. Please login." });
     } else {
       res.send(
-        `Welcome, ${user.userName}. You have ${user.posts.length} posts drafted!`
+        `Welcome, ${user.user_name}. You have ${user.posts.length} posts drafted!`
       );
     }
   } catch (error) {
     res.status(500).json({
-      message: "Error getting user dashboard: ",
+      message: "DASHBOARD ROUTER ERROR",
       error: error.message,
     });
   }
