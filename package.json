@@ -9,7 +9,9 @@
     "dev": "pnpm --parallel -r dev",
     "build": "pnpm -r build"
   },
-  "keywords": [],
+  "keywords": [
+    
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {

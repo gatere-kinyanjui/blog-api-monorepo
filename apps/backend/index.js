@@ -31,7 +31,7 @@ expressServerApp.use(express.static(path.join(__dirname, "public")));
 // routes middleware
 expressServerApp.use("/", homeRouter);
 expressServerApp.use("/auth", authRouter);
-expressServerApp.use("/dashboard", dashboardRouter);
+expressServerApp.use("/dashboard", authMiddleware, dashboardRouter);
 expressServerApp.use("/posts", blogPostsRouter);
 
 // expressServerApp.get("/", (req, res) => {
@@ -42,9 +42,9 @@ expressServerApp.listen(port, () => {
   console.log(`Blog API app listening on ${port}. Success!`);
 });
 
-function verifyToken(req, res, next) {}
+// function verifyToken(req, res, next) {}
 
-/* TODO: IMPLEMENT DASHBOARD/PROTECTED ROUTE
+/* // TODO: IMPLEMENT DASHBOARD/PROTECTED ROUTE
 expressServerApp.get(
   "/dashboard",
   authMiddleware,

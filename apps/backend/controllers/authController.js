@@ -45,7 +45,7 @@ const postRegister = async (req, res) => {
       .json({ message: "Error registering new user", error: error.message });
   }
 };
-// TODO: LOGIN IS NOT PASSWORD-PROTECTED..!!!
+
 const postLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
