@@ -3,7 +3,7 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 const RootLayout = () => (
   <>
-    <div className="p-2 flex gap-4 justify-between">
+    <div className="p-2 flex gap-4 justify-between w-full">
       <Link to="/" className="[&.active]:font-bold">
         Home
       </Link>{" "}
@@ -23,7 +23,7 @@ const RootLayout = () => (
         Sign up
       </Link>
     </div>
-    <hr />
+    {/* <hr /> */}
     <Outlet />
     <TanStackRouterDevtools />
   </>

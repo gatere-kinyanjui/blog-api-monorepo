@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/navbar";
+import { NavBar } from "@/components/navbar";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about")({
@@ -8,7 +8,8 @@ export const Route = createFileRoute("/about")({
 function RouteComponent() {
   return (
     <div>
-      <Navbar />
+      {/* <NavBar /> */}
+      Hello, about!
     </div>
   );
 }
