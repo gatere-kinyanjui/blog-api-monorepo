@@ -4,14 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "dotenv -e .env.production -- node index.js",
-    "test": "dotenv -e .env.test -- jest",
-    "dev": "dotenv -e .env.development -- nodemon index.js",
-    "migrate:dev": "dotenv -e .env.development -- prisma migrate dev",
-    "migrate:prod": "dotenv -e .env.production -- prisma migrate deploy",
-    "db-push:prod": "dotenv -e .env.production -- pnpm prisma db push",
-    "studio:prod": "dotenv -e .env.production -- pnpm prisma studio",
-    "studio:dev": "dotenv -e .env.development -- pnpm prisma studio"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -30,7 +25,6 @@
     "prisma": "^6.3.0"
   },
   "devDependencies": {
-    "dotenv-cli": "^10.0.0",
     "nodemon": "^3.1.9"
   }
 }

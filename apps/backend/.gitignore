@@ -1,6 +1,5 @@
 node_modules
-
-.env*
-!.env.example
+# Keep environment variables out of version control
+.env
 
 *.pem

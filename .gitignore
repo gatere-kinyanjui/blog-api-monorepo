@@ -1,7 +1,6 @@
 node_modules
-
-.env*
-!.env.example
+# Keep environment variables out of version control
+.env
 
 dev-plan.md
 
@@ -12,4 +11,3 @@ build
 *.log
 
 .DS_Store
-
