@@ -1,6 +1,4 @@
-const {
-  prismaClientInstance,
-} = require("../orm-services/prismaClientInstance");
+import prismaClientInstance from "../orm-services/prismaClientInstance.js";
 
 const getBlogPostsPage = async (req, res, next) => {
   // TODO: ENSURE THIS MIDDLEWARE WORKS BY FETCHING BLOG POSTS
@@ -49,4 +47,4 @@ const postBlogPostPage = async (req, res) => {
   }
 };
 
-module.exports = { postBlogPostPage, getBlogPostsPage };
+export default { postBlogPostPage, getBlogPostsPage };

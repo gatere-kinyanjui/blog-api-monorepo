@@ -1,10 +1,6 @@
-const express = require("express");
+import prismaClientInstance from "../orm-services/prismaClientInstance.js";
 
-const {
-  prismaClientInstance,
-} = require("../orm-services/prismaClientInstance");
-
-const dashboardRouter = express.Router();
+const dashboardRouter = expresss.Router();
 
 dashboardRouter.get("/:id", async (req, res) => {
   try {
@@ -43,4 +39,4 @@ dashboardRouter.get("/:id", async (req, res) => {
   }
 });
 
-module.exports = dashboardRouter;
+export default dashboardRouter;

@@ -1,32 +1,32 @@
-const express = require("express");
-const path = require("path");
+import express, { urlencoded, json } from "express";
+import { join } from "path";
 require("dotenv").config();
 
-const authRouter = require("./routes/authRouter");
-const homeRouter = require("./routes/homeRouter");
-const dashboardRouter = require("./routes/dashboardRouter");
-const blogPostsRouter = require("./routes/blogPostsRouter");
+import authRouter from "./routes/authRouter.js";
+import homeRouter from "./routes/homeRouter.js";
+import dashboardRouter from "./routes/dashboardRouter.js";
+import blogPostsRouter from "./routes/blogPostsRouter.js";
 
-const passport = require("../backend/utils/passport/passport-auth");
+import initialize from "../backend/utils/passport/passport-auth.js";
 
-const authMiddleware = require("./middleware/authMiddleware");
+import authMiddleware from "./middleware/authMiddleware.js";
 
 const expressServerApp = express();
 const port = process.env.PORT || 8000;
 
-const cors = require("cors");
+import cors from "cors";
 
 const corsOption = { origin: ["http://localhost:5173"] }; // author app vite local port
 
 // body parsers
-expressServerApp.use(express.urlencoded({ extended: true }));
-expressServerApp.use(express.json());
+expressServerApp.use(urlencoded({ extended: true }));
+expressServerApp.use(json());
 
-expressServerApp.use(passport.initialize());
+expressServerApp.use(initialize());
 
 expressServerApp.use(cors(corsOption));
 
-expressServerApp.use(express.static(path.join(__dirname, "public")));
+expressServerApp.use(join(__dirname, "public").static);
 
 // routes middleware
 expressServerApp.use("/", homeRouter);

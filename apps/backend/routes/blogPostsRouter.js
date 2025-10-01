@@ -1,14 +1,14 @@
-const express = require("express");
+import { Router } from "express";
 // const authMiddleware = require("../middleware/authMiddleware");
-const {
+import {
   getBlogPostsPage,
   postBlogPostPage,
-} = require("../controllers/blogPostController");
+} from "../controllers/blogPostController.js";
 
-const blogPostsRouter = express.Router();
+const blogPostsRouter = Router();
 
 blogPostsRouter.get("/", getBlogPostsPage);
 
 blogPostsRouter.post("/", postBlogPostPage);
 
-module.exports = blogPostsRouter;
+export default blogPostsRouter;

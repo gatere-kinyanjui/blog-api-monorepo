@@ -1,4 +1,4 @@
-const passport = require("../utils/passport/passport-auth");
+import passport from "../utils/passport/passport-auth.js";
 
 const authMiddleware = (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user, info) => {
@@ -22,4 +22,4 @@ const authMiddleware = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports = authMiddleware;
+export default authMiddleware;

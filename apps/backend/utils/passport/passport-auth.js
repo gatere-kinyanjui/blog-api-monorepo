@@ -1,19 +1,17 @@
-const passport = require("passport");
-const path = require("path");
+import passport from "passport";
+import path from "path";
 
-const {
-  prismaClientInstance,
-} = require("../../orm-services/prismaClientInstance");
+import { prismaClientInstance } from "../../orm-services/prismaClientInstance.js";
 
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
-const { Strategy: LocalStrategy } = require("passport-local");
+import { Strategy as JwtStrategy } from "passport-jwt";
+import { ExtractJwt } from "passport-jwt";
+import { Strategy as LocalStrategy } from "passport-local";
 
-const bcrypt = require("bcrypt");
+import { compareSync } from "bcrypt";
 
 require("dotenv").config();
 
-passport.use(JwtStrategy);
+use(JwtStrategy);
 
 // CONFIGURE AND RETRIEVE PUBLIC KEYPAIR FOR ENCRYPTING JWT TOKEN
 // const pathToKey = path.join(__dirname, "..", "id_rsa_pub.pem");
@@ -25,7 +23,7 @@ const options = {
   algorithms: ["HS256"],
 };
 
-passport.use(
+use(
   new JwtStrategy(options, async (jwt_payload, done) => {
     try {
       const userToLogin = await prismaClientInstance.user.findUnique({
@@ -42,9 +40,9 @@ passport.use(
   })
 );
 
-passport.use(
+use(
   new LocalStrategy(
-  { usernameField: "email", passwordField: "password" },
+    { usernameField: "email", passwordField: "password" },
     function (email, password, cb) {
       const userLoginResult = prismaClientInstance.user.findUnique({
         where: {
@@ -61,10 +59,7 @@ passport.use(
         return done(null, false, { message: "Invalid login credentials" });
       }
 
-      const hashPassword = bcrypt.compareSync(
-        password,
-        userLoginResult.password
-      );
+      const hashPassword = compareSync(password, userLoginResult.password);
 
       if (err) {
         console.error("[PASSPORT-AUTH ERROR]:", err.message);
@@ -80,4 +75,4 @@ passport.use(
   )
 );
 
-module.exports = passport;
+export default passport;

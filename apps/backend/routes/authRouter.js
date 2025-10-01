@@ -1,13 +1,13 @@
-const express = require("express");
+import express from "express";
 
-const {
+import {
   getLoginPage,
   postLogin,
   postRegister,
-} = require("../controllers/authController");
+} from "../controllers/authController.js";
 
-const passport = require("passport");
-const { getDashboardRoute } = require("../controllers/dashboardController");
+import passport from "passport";
+import getDashboardRoute from "../controllers/dashboardController.js";
 
 const authRouter = express.Router();
 
@@ -34,4 +34,4 @@ authRouter.get("/protected", function (req, res, next) {
   })(req, res, next);
 });
 
-module.exports = authRouter;
+export default authRouter;

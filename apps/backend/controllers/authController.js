@@ -1,9 +1,7 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const {
-  prismaClientInstance,
-} = require("../orm-services/prismaClientInstance");
-const dashboardRouter = require("../routes/dashboardRouter");
+import { sign } from "jsonwebtoken";
+import { hash, compareSync } from "bcrypt";
+import prismaClientInstance from "../orm-services/prismaClientInstance.js";
+// import dashboardRouter from "../routes/dashboardRouter";
 
 const getLoginPage = async (req, res) => {
   res.send("Login or Sign up here");
@@ -23,7 +21,7 @@ const postRegister = async (req, res) => {
     } else {
       console.log("AUTH CONTROLLER REGISTRATION BODY: ", req.body);
 
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedPassword = await hash(password, 10);
 
       const userToRegister = await prismaClientInstance.user.create({
         data: {
@@ -60,12 +58,12 @@ const postLogin = async (req, res) => {
       return res.status(401).json({ message: "user does not exist" });
     }
 
-    if (!bcrypt.compareSync(password, userToLogin.password)) {
+    if (!compareSync(password, userToLogin.password)) {
       console.error("[AUTH CONTROLLER]: Invalid password");
       return res.status(401).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign(
+    const token = sign(
       {
         id: userToLogin.id,
         email: userToLogin.email,
@@ -94,4 +92,4 @@ const postLogin = async (req, res) => {
   }
 };
 
-module.exports = { getLoginPage, postRegister, postLogin };
+export default { getLoginPage, postRegister, postLogin };
