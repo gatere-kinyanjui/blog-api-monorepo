@@ -47,4 +47,4 @@ const postBlogPostPage = async (req, res) => {
   }
 };
 
-export default { postBlogPostPage, getBlogPostsPage };
+export { postBlogPostPage, getBlogPostsPage };

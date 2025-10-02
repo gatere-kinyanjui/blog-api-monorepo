@@ -1,6 +1,8 @@
+import express from "express";
+
 import prismaClientInstance from "../orm-services/prismaClientInstance.js";
 
-const dashboardRouter = expresss.Router();
+const dashboardRouter = express.Router();
 
 dashboardRouter.get("/:id", async (req, res) => {
   try {

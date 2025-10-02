@@ -1,6 +1,6 @@
 import express from "express";
 
-const getHomePage = require("../controllers/homeController");
+import getHomePage from "../controllers/homeController.js";
 
 const homeRouter = express.Router();
 

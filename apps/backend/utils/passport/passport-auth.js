@@ -1,7 +1,7 @@
 import passport from "passport";
 import path from "path";
 
-import { prismaClientInstance } from "../../orm-services/prismaClientInstance.js";
+import prismaClientInstance from "../../orm-services/prismaClientInstance.js";
 
 import { Strategy as JwtStrategy } from "passport-jwt";
 import { ExtractJwt } from "passport-jwt";
@@ -9,9 +9,9 @@ import { Strategy as LocalStrategy } from "passport-local";
 
 import { compareSync } from "bcrypt";
 
-require("dotenv").config();
+import "dotenv/config";
 
-use(JwtStrategy);
+passport.use(JwtStrategy);
 
 // CONFIGURE AND RETRIEVE PUBLIC KEYPAIR FOR ENCRYPTING JWT TOKEN
 // const pathToKey = path.join(__dirname, "..", "id_rsa_pub.pem");
@@ -23,7 +23,7 @@ const options = {
   algorithms: ["HS256"],
 };
 
-use(
+passport.use(
   new JwtStrategy(options, async (jwt_payload, done) => {
     try {
       const userToLogin = await prismaClientInstance.user.findUnique({
@@ -40,7 +40,7 @@ use(
   })
 );
 
-use(
+passport.use(
   new LocalStrategy(
     { usernameField: "email", passwordField: "password" },
     function (email, password, cb) {
