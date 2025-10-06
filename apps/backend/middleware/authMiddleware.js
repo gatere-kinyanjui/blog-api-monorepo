@@ -2,9 +2,9 @@ import passport from "../utils/passport/passport-auth.js";
 
 const authMiddleware = (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user, info) => {
-    console.log("ERROR:", err);
-    console.log("USER:", user);
-    console.log("INFO:", info);
+    console.log("[AUTH MIDDLEWARE] ERROR:", err);
+    console.log("[AUTH MIDDLEWARE] USER:", user);
+    console.log("[AUTH MIDDLEWARE] INFO:", info);
 
     if (err) {
       return next(err);
