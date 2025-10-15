@@ -47,8 +47,6 @@ expressServerApp.listen(port, () => {
   console.log(`Blog API app listening on ${port}. Success!`);
 });
 
-// function verifyToken(req, res, next) {}
-
 /* // TODO: IMPLEMENT DASHBOARD/PROTECTED ROUTE
 expressServerApp.get(
   "/dashboard",

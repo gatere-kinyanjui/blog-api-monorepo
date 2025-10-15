@@ -11,7 +11,7 @@ import { compareSync } from "bcrypt";
 
 import "dotenv/config";
 
-passport.use(JwtStrategy);
+// passport.use(JwtStrategy);
 
 // CONFIGURE AND RETRIEVE PUBLIC KEYPAIR FOR ENCRYPTING JWT TOKEN
 // const pathToKey = path.join(__dirname, "..", "id_rsa_pub.pem");
@@ -40,7 +40,7 @@ passport.use(
   })
 );
 
-passport.use(
+/* passport.use(
   new LocalStrategy(
     { usernameField: "email", passwordField: "password" },
     function (email, password, cb) {
@@ -73,6 +73,6 @@ passport.use(
       return don(null, userLoginResult);
     }
   )
-);
+); */
 
 export default passport;
