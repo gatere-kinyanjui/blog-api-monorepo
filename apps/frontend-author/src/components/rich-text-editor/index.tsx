@@ -1,17 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import MenuBar from "./menu-bar";
 import TextAlign from "@tiptap/extension-text-align";
 import Highlight from "@tiptap/extension-highlight";
 import { Button } from "../ui/button";
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent } from "react";
 
-interface IRichTextEditorProps {
+/* interface IRichTextEditorProps {
   content: string;
   onChange: (content: string) => void;
-}
+} */
 
 interface IFormData {
   title: string;
@@ -20,7 +17,7 @@ interface IFormData {
   author_id: number | string;
 }
 
-interface ISaveDocumentResponse {
+/* interface ISaveDocumentResponse {
   message: string;
   document?: {
     // Optional document detail, assuming backend might return it
@@ -31,7 +28,7 @@ interface ISaveDocumentResponse {
     createdAt: Date;
     updatedAt: Date;
   };
-}
+} */
 
 // define your extension array
 const extensions = [
@@ -53,12 +50,12 @@ const extensions = [
   Highlight,
 ];
 
-const hardCodedFormData = {
+/* const hardCodedFormData = {
   title: "post uno",
   content: "post uno content",
   published: true,
   author_id: 909,
-};
+}; */
 
 const RichTextEditor = () => {
   const [title, setTitle] = useState("");

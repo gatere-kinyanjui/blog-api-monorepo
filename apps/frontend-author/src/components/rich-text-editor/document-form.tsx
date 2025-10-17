@@ -1,21 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-import React, {
-  useState,
-  useEffect,
-  type FormEvent,
-  type ChangeEvent,
-} from "react";
-import { useEditor, EditorContent, Editor } from "@tiptap/react";
+import React, { useState, type FormEvent } from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 // --- Interface Definitions ---
 
 // Interface for data expected from the initial document load API
-interface LoadedDocumentData {
+/* interface LoadedDocumentData {
   html: string;
   lastSavedAt: string | null;
-}
+} */
 
 // Interface for the form data to be submitted
 interface FormData {

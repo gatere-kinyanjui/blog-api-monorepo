@@ -26,13 +26,7 @@ export const Navbar = () => {
 }; */
 
 import { Link } from "@tanstack/react-router";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarCollapse,
-  NavbarLink,
-  NavbarToggle,
-} from "flowbite-react";
+import { Navbar, NavbarCollapse, NavbarLink } from "flowbite-react";
 // import Link from "next/link";
 
 export function NavBar() {
